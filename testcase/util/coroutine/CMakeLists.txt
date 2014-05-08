@@ -1,0 +1,11 @@
+add_executable(coroutine_api_test api_test.cpp)
+target_link_libraries(coroutine_api_test util)
+
+add_executable(coroutine_mgr_test mgr_test.cpp)
+target_link_libraries(coroutine_mgr_test util)
+
+add_executable(coroutine_echo_server echo_server.cpp)
+target_link_libraries(coroutine_echo_server util)
+
+add_executable(coroutine_co_client co_client.cpp)
+target_link_libraries(coroutine_co_client util pthread)

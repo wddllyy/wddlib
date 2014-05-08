@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{08614ab0-4b2c-47d7-b9bc-14e23cfe745d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\container">
+      <UniqueIdentifier>{19622393-a977-4046-b7e2-49a186e5bab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\timer">
+      <UniqueIdentifier>{eaf2c46e-eb13-423f-9b15-b8b1c161d10f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\coroutine">
+      <UniqueIdentifier>{f5a50489-5e08-4a80-b596-b5d43307d689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\log">
+      <UniqueIdentifier>{1bd98bc3-2428-4bf8-a9b9-2b2fe0583cba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\net">
+      <UniqueIdentifier>{b89f8205-9aaa-44ef-a4fb-9eb8a827fc16}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\util\container\obj_pool.cpp">
+      <Filter>util\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\timer\lite_timer.cpp">
+      <Filter>util\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\coroutine\coroutine.cpp">
+      <Filter>util\coroutine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\coroutine\comgr.cpp">
+      <Filter>util\coroutine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\log\log.cpp">
+      <Filter>util\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\log\logmgr.cpp">
+      <Filter>util\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\net\tcp_channel.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\net\tcp_client.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\net\tcp_server.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\net\tcp_socket.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\net\epoll_poller.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\net\buffer.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\util\container\obj_pool.h">
+      <Filter>util\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\timer\lite_timer.h">
+      <Filter>util\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\coroutine\comgr.h">
+      <Filter>util\coroutine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\coroutine\coroutine.h">
+      <Filter>util\coroutine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\log\log.h">
+      <Filter>util\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\log\logmgr.h">
+      <Filter>util\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\net\tcp_channel.h">
+      <Filter>util\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\net\tcp_client.h">
+      <Filter>util\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\net\tcp_server.h">
+      <Filter>util\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\net\tcp_socket.h">
+      <Filter>util\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\net\epoll_poller.h">
+      <Filter>util\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\net\buffer.h">
+      <Filter>util\net</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\util\CMakeLists.txt">
+      <Filter>util</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+add_executable(net_buffer_test util_net_buffer.cpp)
+target_link_libraries(net_buffer_test util)
+
+add_executable(net_client_test util_net_client.cpp)
+target_link_libraries(net_client_test util)
+
+add_executable(net_server_test util_net_server.cpp)
+target_link_libraries(net_server_test util)

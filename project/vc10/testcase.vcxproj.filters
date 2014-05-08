@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\testcase\util\container\util_container_test.cpp">
+      <Filter>util\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\timer\util_timer_test.cpp">
+      <Filter>util\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\coroutine\api_test.cpp">
+      <Filter>util\coroutine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\coroutine\co_client.cpp">
+      <Filter>util\coroutine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\coroutine\echo_server.cpp">
+      <Filter>util\coroutine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\coroutine\mgr_test.cpp">
+      <Filter>util\coroutine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\log\util_log_test.cpp">
+      <Filter>util\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\net\util_net_buffer.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\net\util_net_client.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\testcase\util\net\util_net_server.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="util">
+      <UniqueIdentifier>{ce7fb026-0de6-432a-89bd-ab266cd0abb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\container">
+      <UniqueIdentifier>{e0e1ff55-2386-477f-8f1b-dc441448bb67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\timer">
+      <UniqueIdentifier>{c8ba696b-d0b5-4a21-9b43-69469baaa49b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\coroutine">
+      <UniqueIdentifier>{7e100224-fba3-4433-8507-445e52d64686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\log">
+      <UniqueIdentifier>{2a78c850-ae63-47bd-ae73-632fe8b2c846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\net">
+      <UniqueIdentifier>{6ccd6c14-2f33-4223-9143-e2945bac0f56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\testcase\util\coroutine\CMakeLists.txt">
+      <Filter>util\coroutine</Filter>
+    </None>
+    <None Include="..\..\testcase\util\container\CMakeLists.txt">
+      <Filter>util\container</Filter>
+    </None>
+    <None Include="..\..\testcase\util\timer\CMakeLists.txt">
+      <Filter>util\timer</Filter>
+    </None>
+    <None Include="..\..\testcase\util\log\CMakeLists.txt">
+      <Filter>util\log</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\testcase\testcase_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
