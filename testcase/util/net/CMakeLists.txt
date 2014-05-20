@@ -6,3 +6,6 @@ target_link_libraries(net_client_test util)
 
 add_executable(net_server_test util_net_server.cpp)
 target_link_libraries(net_server_test util)
+
+add_executable(net_server_control util_control_server.cpp)
+target_link_libraries(net_server_control util)

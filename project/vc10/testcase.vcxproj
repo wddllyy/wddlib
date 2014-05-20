@@ -95,6 +95,7 @@
     <ClCompile Include="..\..\testcase\util\coroutine\echo_server.cpp" />
     <ClCompile Include="..\..\testcase\util\coroutine\mgr_test.cpp" />
     <ClCompile Include="..\..\testcase\util\log\util_log_test.cpp" />
+    <ClCompile Include="..\..\testcase\util\net\util_control_server.cpp" />
     <ClCompile Include="..\..\testcase\util\net\util_net_buffer.cpp" />
     <ClCompile Include="..\..\testcase\util\net\util_net_client.cpp" />
     <ClCompile Include="..\..\testcase\util\net\util_net_server.cpp" />

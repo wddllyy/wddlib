@@ -91,6 +91,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="..\..\src\util\framework\server_app.h" />
     <ClInclude Include="..\..\src\util\log\log.h" />
     <ClInclude Include="..\..\src\util\log\logmgr.h" />
     <ClInclude Include="..\..\src\util\net\buffer.h" />
@@ -111,6 +112,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\src\util\framework\server_app.cpp" />
     <ClCompile Include="..\..\src\util\log\log.cpp" />
     <ClCompile Include="..\..\src\util\log\logmgr.cpp" />
     <ClCompile Include="..\..\src\util\net\buffer.cpp" />

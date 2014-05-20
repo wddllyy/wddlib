@@ -19,6 +19,9 @@
     <Filter Include="util\net">
       <UniqueIdentifier>{b89f8205-9aaa-44ef-a4fb-9eb8a827fc16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util\framework">
+      <UniqueIdentifier>{01c57475-1802-43f6-a754-d0ed641b2a1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\util\container\obj_pool.cpp">
@@ -57,6 +60,9 @@
     <ClCompile Include="..\..\src\util\net\buffer.cpp">
       <Filter>util\net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\util\framework\server_app.cpp">
+      <Filter>util\framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\util\container\obj_pool.h">
@@ -94,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\util\net\buffer.h">
       <Filter>util\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\framework\server_app.h">
+      <Filter>util\framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

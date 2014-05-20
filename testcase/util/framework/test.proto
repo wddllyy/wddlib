@@ -1,0 +1,15 @@
+package controlconfig;
+
+message DBConfig
+{
+    optional    string   ip   = 1;
+    optional    fixed32  port   = 2;
+}
+
+message Config 
+{
+    optional fixed32  costmoney  = 1;
+    optional fixed32  dbwriteinterval = 2;
+
+    repeated DBConfig dbconfig = 7;
+}

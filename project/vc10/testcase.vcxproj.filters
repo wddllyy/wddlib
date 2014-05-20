@@ -31,6 +31,9 @@
     <ClCompile Include="..\..\testcase\util\net\util_net_server.cpp">
       <Filter>util\net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\testcase\util\net\util_control_server.cpp">
+      <Filter>util\net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="util">

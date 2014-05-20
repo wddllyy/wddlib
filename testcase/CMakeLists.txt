@@ -1,13 +1,6 @@
 set(BAK_EXECUTABLE_OUTPUT_PATH ${EXECUTABLE_OUTPUT_PATH})
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin/testcase)
 
-#add_subdirectory(util/container)
-#add_subdirectory(util/timer)
-#add_subdirectory(util/coroutine)
-
-#FILE(GLOB_RECURSE SourceFiles "*")
-#MESSAGE(STATUS "SourceFiles:${SourceFiles}")
-
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/testcase)
 
 MACRO(SUBDIRLIST result curdir)
@@ -22,11 +15,15 @@ MACRO(SUBDIRLIST result curdir)
 ENDMACRO()
 
 
+
+############################################################
 SUBDIRLIST(SUBDIRS  ${CMAKE_CURRENT_SOURCE_DIR}/util)
 MESSAGE(STATUS "SUBDIRS:${SUBDIRS}")
 
 FOREACH(subdir ${SUBDIRS})
     ADD_SUBDIRECTORY(util/${subdir})
 ENDFOREACH()
+
+
 
 set(EXECUTABLE_OUTPUT_PATH ${BAK_EXECUTABLE_OUTPUT_PATH})
