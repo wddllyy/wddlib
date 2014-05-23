@@ -18,6 +18,7 @@ public:
     {
 
     }
+	int Process();
     virtual int OnMsgRecv(ServerChannel& channel);
     virtual int OnNewChannel(int iFD, InetAddress addr);
     virtual int OnCloseChannel( ServerChannel& channel );

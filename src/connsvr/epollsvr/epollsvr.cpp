@@ -2,6 +2,11 @@
 
 EPollPoller __unvisiable_poll;
 
+int EpollServer::Process()
+{
+	__unvisiable_poll.Poll(0);
+}
+
 int EpollServer::OnMsgRecv(ServerChannel& channel)
 {
     //printf("Recv %d bytes Msg %s ", (int)channel.ReadableBytes(), channel.PeekReadBuf() );
