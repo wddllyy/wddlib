@@ -26,6 +26,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 
 add_subdirectory(src/util)
-if(CMAKE_BUILD_EXAMPLES)
-  add_subdirectory(testcase)
-endif()
+add_subdirectory(src/connsvr)
+#if(CMAKE_BUILD_EXAMPLES)
+#  add_subdirectory(testcase)
+#endif()

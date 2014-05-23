@@ -1,0 +1,12 @@
+message ConnSvrCfg 
+{
+		required fixed32  port        		 		= 1;	   
+    required fixed32  maxconn      				= 2;
+    optional fixed32  maxidletime 				= 3 [default = 0];      //最大空闲时间秒，0为不限制
+		optional fixed32   msglenpos    			= 4 [default = 0];      //协议第一个字节开始标识包长
+		optional fixed32   msglensize   			= 5 [default = 4];      //协议包长字段长度默认为4字节
+		optional fixed32  recvpkglimit 				= 6 [default = 0];      //最大收包频率，默认为0，不限制
+		optional fixed32  recvpkglimitinsec 	= 7 [default = 5];      //最大收包频率，统计时间范围，默认5秒，<=0 不生效
+		required string   transip      				= 8;                    //协议转发的地址 1.1.1.1
+		required fixed32  transport    				= 9;                    //协议转发的端口号
+}

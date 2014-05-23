@@ -2,6 +2,7 @@
 #define __UTIL_BUFFER_H
 
 #include <vector>
+#include <cstddef>
 
 class Buffer
 {

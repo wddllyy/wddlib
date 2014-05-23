@@ -161,13 +161,15 @@ static void _process(uint32_t low32, uint32_t hi32)
             //printf("%s:%d\n", __FUNCTION__, __LINE__);
         }
         //printf("%s:%d\n", __FUNCTION__, __LINE__);
-        co_swapcontext(&spCo->ctx, &spAwakeCo->ctx);       
+        co_swapcontext(&spCo->ctx, &spAwakeCo->ctx); 
+
         //printf("%s:%d\n", __FUNCTION__, __LINE__);
     }
     else
     {
         //printf("%s:%d\n", __FUNCTION__, __LINE__);
         co_swapcontext(&pCo->ctx, &pSch->ctx);
+	
     }
 
 }

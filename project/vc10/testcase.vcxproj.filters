@@ -34,6 +34,9 @@
     <ClCompile Include="..\..\testcase\util\net\util_control_server.cpp">
       <Filter>util\net</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\testcase\util\framework\framework_test.cpp">
+      <Filter>util\framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="util">
@@ -54,6 +57,12 @@
     <Filter Include="util\net">
       <UniqueIdentifier>{6ccd6c14-2f33-4223-9143-e2945bac0f56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util\singleton">
+      <UniqueIdentifier>{6a81dccf-eaf6-42f8-a36e-9113fe6e3dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\framework">
+      <UniqueIdentifier>{df4bebe0-2317-44ed-a0e8-1e502a7f5f05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\testcase\util\coroutine\CMakeLists.txt">
@@ -68,10 +77,27 @@
     <None Include="..\..\testcase\util\log\CMakeLists.txt">
       <Filter>util\log</Filter>
     </None>
+    <None Include="..\..\testcase\util\framework\test.proto">
+      <Filter>util\framework</Filter>
+    </None>
+    <None Include="..\..\testcase\util\framework\testapp.conf">
+      <Filter>util\framework</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\testcase\testcase_util.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\util\singleton\Singleton.h">
+      <Filter>util\singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\singleton\Singleton.hpp">
+      <Filter>util\singleton</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\testcase\util\framework\CMakeLists.txt">
+      <Filter>util\framework</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -52,7 +52,7 @@ class TcpServer
 {
 public:
     TcpServer(EPollPoller& poll, InetAddress addr, bool isReUsePort);
-    ~TcpServer();
+    virtual ~TcpServer();
 public:
     int Start();
     int Finish();

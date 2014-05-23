@@ -94,6 +94,7 @@
     <ClCompile Include="..\..\testcase\util\coroutine\co_client.cpp" />
     <ClCompile Include="..\..\testcase\util\coroutine\echo_server.cpp" />
     <ClCompile Include="..\..\testcase\util\coroutine\mgr_test.cpp" />
+    <ClCompile Include="..\..\testcase\util\framework\framework_test.cpp" />
     <ClCompile Include="..\..\testcase\util\log\util_log_test.cpp" />
     <ClCompile Include="..\..\testcase\util\net\util_control_server.cpp" />
     <ClCompile Include="..\..\testcase\util\net\util_net_buffer.cpp" />
@@ -104,11 +105,18 @@
   <ItemGroup>
     <None Include="..\..\testcase\util\container\CMakeLists.txt" />
     <None Include="..\..\testcase\util\coroutine\CMakeLists.txt" />
+    <None Include="..\..\testcase\util\framework\test.proto" />
+    <None Include="..\..\testcase\util\framework\testapp.conf" />
     <None Include="..\..\testcase\util\log\CMakeLists.txt" />
     <None Include="..\..\testcase\util\timer\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\util\singleton\Singleton.h" />
+    <ClInclude Include="..\..\src\util\singleton\Singleton.hpp" />
     <ClInclude Include="..\..\testcase\testcase_util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\testcase\util\framework\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

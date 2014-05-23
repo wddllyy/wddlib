@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="framework">
+      <UniqueIdentifier>{93e05fd3-22a1-47bb-8ce1-e210ae446e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="epollsvr">
+      <UniqueIdentifier>{79f08010-2d71-42f2-97a3-d8eff099473b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\connsvr\framework\connsvr.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\connsvr\epollsvr\epollsvr.cpp">
+      <Filter>epollsvr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\connsvr\framework\connsvr.pb.cc">
+      <Filter>framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\connsvr\framework\connsvr.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\connsvr\epollsvr\epollsvr.h">
+      <Filter>epollsvr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\connsvr\framework\connsvr.pb.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\src\connsvr\framework\connsvr.proto">
+      <Filter>framework</Filter>
+    </None>
+  </ItemGroup>
+</Project>

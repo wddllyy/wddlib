@@ -39,7 +39,7 @@ class TcpSocket
 {
 public:
     TcpSocket(EPollPoller& poll);
-    ~TcpSocket();
+    virtual ~TcpSocket();
 public:
     
     // config setting

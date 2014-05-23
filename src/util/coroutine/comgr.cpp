@@ -142,7 +142,7 @@ int SCoMgr::Alloc(SCoFunc func, void * arg, int iArgLen)
         break;
     }
 
-    int iRet = co_init(&pCo->m_Co, (coroutine_func)func, (void *)iIdx, pStack, iStackSize, &m_Sch);
+    int iRet = co_init(&pCo->m_Co, (coroutine_func)func, (void *)(long)iIdx, pStack, iStackSize, &m_Sch);
     if (iRet < 0)
     {
         return -5;
