@@ -7,6 +7,9 @@
     <Filter Include="epollsvr">
       <UniqueIdentifier>{79f08010-2d71-42f2-97a3-d8eff099473b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="protocol">
+      <UniqueIdentifier>{12f2beb7-9661-4d62-9bdf-4e47f8b56661}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\connsvr\framework\connsvr.cpp">
@@ -33,6 +36,9 @@
   <ItemGroup>
     <None Include="..\..\..\src\connsvr\framework\connsvr.proto">
       <Filter>framework</Filter>
+    </None>
+    <None Include="..\..\..\src\connsvr\protocol\protocol_connsvr.proto">
+      <Filter>protocol</Filter>
     </None>
   </ItemGroup>
 </Project>

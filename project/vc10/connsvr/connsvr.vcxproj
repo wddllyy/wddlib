@@ -22,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\src\connsvr\framework\connsvr.proto" />
+    <None Include="..\..\..\src\connsvr\protocol\protocol_connsvr.proto" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{100DD14D-6E83-40F9-9E09-F214C8A54DFC}</ProjectGuid>
