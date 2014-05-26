@@ -1,4 +1,4 @@
-package ConnSvr;
+package ConnSvr_Conf;
 
 enum MsgCmd
 {
@@ -11,13 +11,13 @@ enum MsgCmd
 
 message StartReq
 {
-	required uint currentconn = 1;//当前已建立连接总数，不包括这个正在建立的连接
+	required uint32 currentconn = 1;//当前已建立连接总数，不包括这个正在建立的连接
 }
 
 message StartRsp
 {
-	required int accept			= 1;//0接受，1拒绝
-	required uint routechannel	= 2;//路由通道
+	required int32 accept			= 1;//0接受，1拒绝
+	required uint32 routechannel	= 2;//路由通道
 }
 
 message Stop
@@ -36,7 +36,7 @@ message MsgHead
 	required fixed32 msglen = 1;
 	required fixed32 cmdid  = 2;
 	required fixed32 connid = 3;
-	required uint    port	= 4;
+	required uint32    port	= 4;
 	required string  ip		= 5;
 }
 

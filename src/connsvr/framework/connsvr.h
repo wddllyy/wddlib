@@ -5,6 +5,10 @@
 #include "util/log/logmgr.h"
 #include "connsvr.pb.h"
 
+class ConnSvr;
+
+extern ConnSvr G_ConnSvr;
+
 class ConnSvr : public ServerApp
 {
 public:
@@ -22,9 +26,9 @@ public:
     virtual int OnTick();
     virtual int OnFini();
     virtual int OnReload();
-    virtual ::google::protobuf::Message* GetConf() ;
+    virtual ConnSvr_Conf::ConnSvrCfg* GetConf() ;
     virtual int OnCtrlCmd(const std::string& , std::string& );
-	ConnSvrCfg m_config;
+	ConnSvr_Conf::ConnSvrCfg m_config;
 };
 
 #endif

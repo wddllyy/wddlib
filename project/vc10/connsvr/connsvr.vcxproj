@@ -14,11 +14,13 @@
     <ClCompile Include="..\..\..\src\connsvr\epollsvr\epollsvr.cpp" />
     <ClCompile Include="..\..\..\src\connsvr\framework\connsvr.cpp" />
     <ClCompile Include="..\..\..\src\connsvr\framework\connsvr.pb.cc" />
+    <ClCompile Include="..\..\..\src\connsvr\protocol\protocol_connsvr.pb.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\connsvr\epollsvr\epollsvr.h" />
     <ClInclude Include="..\..\..\src\connsvr\framework\connsvr.h" />
     <ClInclude Include="..\..\..\src\connsvr\framework\connsvr.pb.h" />
+    <ClInclude Include="..\..\..\src\connsvr\protocol\protocol_connsvr.pb.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\src\connsvr\framework\connsvr.proto" />

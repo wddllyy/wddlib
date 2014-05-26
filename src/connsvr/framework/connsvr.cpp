@@ -1,9 +1,10 @@
 #include "connsvr.h"
 #include "connsvr/epollsvr/epollsvr.h"
 
+ConnSvr G_ConnSvr;
+
 int ConnSvr::OnInit() 
 {
-	
 	SEpollServer::SetSingleton(new EpollServer(InetAddress("0.0.0.0", m_config.port()), true));
 	SEpollServer::GetInstance()->Start();
     LOG_ERROR("OnInit");
@@ -31,7 +32,7 @@ int ConnSvr::OnReload()
     LOG_ERROR("config : %s", m_config.DebugString().c_str()); 
     return 0;
 }
-::google::protobuf::Message* ConnSvr::GetConf() 
+ConnSvr_Conf::ConnSvrCfg* ConnSvr::GetConf() 
 {
     return &m_config;
 }
@@ -43,8 +44,7 @@ int ConnSvr::OnCtrlCmd(const std::string& , std::string& )
 int main(int argc, char* argv[])
 {
     GetDefaultLogMgr().AddFileCat(LOGLV_FATAL, LOGLV_FATAL, 20*1024*1024, 5, "connsvr", "log");
-    ConnSvr svr;
-    svr.Run();
+    G_ConnSvr.Run();
     return 0;
 
 }

@@ -16,6 +16,7 @@
 #include <functional> 
 #include <cctype>
 #include <locale>
+#include <arpa/inet.h>
 
 // trim from start
 static inline std::string &ltrim(std::string &s) {
@@ -95,6 +96,7 @@ ServerApp::ServerApp( InetAddress controladdr, const char * conf_filename )
     , m_conf_filename(conf_filename)
     , m_is_stop(false)
 {
+	m_Buff.reserve(4096);
 }
 
 
@@ -124,7 +126,14 @@ int ServerApp::Init()
 
 
 }
-
+const char* ServerApp::Pack(::google::protobuf::Message* msg, uint32_t& len)
+{
+	msg->SerializeToString(&m_Buff);
+	len = m_Buff.size();
+	uint32_t nlen = htonl(len);
+	memcpy(&m_Buff[0],&nlen,sizeof(uint32_t));
+	return &m_Buff[0];
+}
 int ServerApp::Run()
 {
     int ret = Init();

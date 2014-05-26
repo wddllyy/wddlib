@@ -4,7 +4,7 @@ EPollPoller __unvisiable_poll;
 
 int EpollServer::Process()
 {
-	__unvisiable_poll.Poll(0);
+	return __unvisiable_poll.Poll(0);
 }
 
 int EpollServer::OnMsgRecv(ServerChannel& channel)

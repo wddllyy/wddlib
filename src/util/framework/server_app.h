@@ -3,7 +3,7 @@
 
 #include <sys/time.h>
 #include <string>
-#include "util/net//tcp_server.h"
+#include "util/net/tcp_server.h"
 
 
 enum ProcRetMode
@@ -19,6 +19,7 @@ namespace google
         class Message;
     }
 }
+
 
 class ServerApp;
 class AppCtrlServer : public TcpServer
@@ -52,11 +53,11 @@ public:
     virtual int OnReload() = 0;
     virtual ::google::protobuf::Message* GetConf() = 0;
     virtual int OnCtrlCmd(const std::string& instr, std::string& outstr);
-
+	timeval CurrentTime() const { return m_curtime; } 
     int Run();
     int Init();
     int ControlCmd(const std::string& instr, std::string& outstr);
-
+	const char* Pack(::google::protobuf::Message* , uint32_t& len);
     template<typename TConf>
     int LoadConf(TConf & conf);
 protected:
@@ -69,6 +70,9 @@ protected:
     std::string m_conf_filename;
     timeval m_curtime;
     bool m_is_stop;
+
+	std::string m_Buff;
+
 private:
 
 };

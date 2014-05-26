@@ -21,6 +21,9 @@
     <ClCompile Include="..\..\..\src\connsvr\framework\connsvr.pb.cc">
       <Filter>framework</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\connsvr\protocol\protocol_connsvr.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\connsvr\framework\connsvr.h">
@@ -31,6 +34,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\connsvr\framework\connsvr.pb.h">
       <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\connsvr\protocol\protocol_connsvr.pb.h">
+      <Filter>protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-package ConnSvr;
+package ConnSvr_Conf;
 
 message Channel
 {
