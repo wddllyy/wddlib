@@ -1,5 +1,7 @@
 #include <sys/epoll.h>
 #include <errno.h>
+#include <signal.h>
+#include <sys/eventfd.h>
 #include "util/net/epoll_poller.h"
 #include "util/log/logmgr.h"
 
@@ -17,6 +19,7 @@ EPollPoller::~EPollPoller()
 
 int EPollPoller::InitEpoll()
 {
+    ::signal(SIGPIPE, SIG_IGN);
     m_EpollFD = ::epoll_create1(EPOLL_CLOEXEC);
     if (m_EpollFD < 0)
     {

@@ -11,7 +11,7 @@ int TcpChannel::DoSend( const char * buf, size_t len )
 {
     size_t remaining = len;
     int nwrote = 0;
-    bool faultError = false;
+
     if (m_SendBuf.ReadableBytes() == 0)
     {
         nwrote = ::write(m_iFD, buf, len);
@@ -26,20 +26,21 @@ int TcpChannel::DoSend( const char * buf, size_t len )
             if (errorcode != EWOULDBLOCK)
             {
                 LOG_ERROR("sockets::write ERROR %d", errorcode);
-                if (errorcode == EPIPE || errorcode == ECONNRESET) // FIXME: any others?
+                if (errorcode == EPIPE || errorcode == ECONNRESET) // FIXME: any others? //会在read或者epoll的地方触发close，这里不用处理了
                 {
-                    faultError = true;
+                    LOG_ERROR("sockets::write ERROR EPIPE or ECONNRESET errorcode:%d", errorcode);
+                    return -1;
                 }
             }
         }
         LOG_TRACE("sockets::write fd:%d len:%d nwrote:%d", m_iFD, len, nwrote);
     }
     
-    if (!faultError && remaining > 0)
+    if (remaining > 0)
     {
         m_SendBuf.ReadableBytes();
         
-        m_SendBuf.Append(buf + nwrote, remaining);
+        AppendSendBuf(buf + nwrote, remaining);
         if (!IsWriting())
         {
             LOG_TRACE("sockets::async write fd:%d remaining:%d", m_iFD, remaining);
@@ -77,6 +78,12 @@ int TcpChannel::DoContineSend()
 
 int TcpChannel::DoRecv()
 {
+
+    if (m_RecvBuf.ReadableBytes() > 50*1024*1024)
+    {
+        m_RecvBuf.Retrieve(m_RecvBuf.ReadableBytes());
+    }
+
     // saved an ioctl()/FIONREAD call to tell how much to read
     char extrabuf[65536];
     struct iovec vec[2];
@@ -126,5 +133,15 @@ TcpChannel::TcpChannel( EPollPoller& poll )
 TcpChannel::~TcpChannel()
 {
 
+}
+
+int TcpChannel::AppendSendBuf( const char * buf, size_t len )
+{
+    if (m_SendBuf.ReadableBytes() > 50*1024*1024)
+    {
+        m_SendBuf.Retrieve(m_SendBuf.ReadableBytes());
+    }
+    m_SendBuf.Append(buf, len);
+    return 0;
 }
 

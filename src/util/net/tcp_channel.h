@@ -23,6 +23,8 @@ public:
     size_t GetWriteBufBytes(){ return m_SendBuf.ReadableBytes(); }
     size_t RetrieveReadBuf(size_t len){return m_RecvBuf.Retrieve(len);}
 
+    //TODO 这里可以做一个高值预警的callback
+    int AppendSendBuf(const char * buf, size_t len);
     
 protected:
     Buffer m_RecvBuf;

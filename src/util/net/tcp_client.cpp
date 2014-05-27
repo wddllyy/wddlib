@@ -64,13 +64,13 @@ int TcpClient::Connect( )
     case EFAULT:
     case ENOTSOCK:
         LOG_ERROR("connect error %d", savedErrno);
-        HandleClose();
+        DoClose();
         ret = -1;
         break;
 
     default:
         LOG_ERROR("Unexpected error in Connect %d", savedErrno);
-        HandleClose();
+        DoClose();
         ret = -1;
         break;
     }
@@ -81,7 +81,7 @@ int TcpClient::Connect( )
 int TcpClient::Disconnect()
 {
     m_isAutoReconnect = false;
-    HandleClose();
+    DoClose();
     return 0;
 }
 
@@ -128,10 +128,11 @@ int TcpClient::HandleClose()
     
     if (m_state != kDisconnected)
     {
-        Close();
-        m_state = kDisconnected;
+        DoClose();
     }
-    
+    // 清理所有的缓存buf，如果要保证容灾可信通讯，需上层自己实现
+    m_SendBuf.Retrieve(m_SendBuf.ReadableBytes());
+    m_RecvBuf.Retrieve(m_RecvBuf.ReadableBytes());
     return 0;
 }
 
@@ -141,7 +142,7 @@ int TcpClient::_Connected()
     if (err)
     {
         LOG_ERROR("Connector::HandleClose fd:%d - SO_ERROR %d %s", m_iFD, err, strerror(err));
-        HandleClose();
+        DoClose();
         return -1;
     }
     m_state= kConnected;
@@ -167,7 +168,7 @@ int TcpClient::SendMsg( const char * data, size_t len )
         if (m_isAutoReconnect)
         {
             LOG_ERROR("SendMsg::kDisconnected - start AutoReconnect");
-            m_SendBuf.Append(data, len);
+            TcpChannel::AppendSendBuf(data, len);
             return Connect();
         }
 
@@ -176,7 +177,7 @@ int TcpClient::SendMsg( const char * data, size_t len )
     }
     else if (m_state == kConnecting)
     {
-        m_SendBuf.Append(data, len);
+        TcpChannel::AppendSendBuf(data, len);
         return 0;
     }
 
@@ -188,4 +189,10 @@ int TcpClient::OnRecvMsg()
 {
     LOG_ERROR("Recv Msg buffer len %d", m_RecvBuf.ReadableBytes());
     return 0;
+}
+
+void TcpClient::DoClose()
+{
+    Close();
+    m_state = kDisconnected;
 }

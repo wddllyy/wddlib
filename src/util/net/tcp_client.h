@@ -29,6 +29,7 @@ public:
     
     InetAddress GetPeerAddr(){return m_PeerAddr;}
 
+    void DoClose();
 private:
     int _Connected();
 
