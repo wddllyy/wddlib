@@ -17,7 +17,7 @@ public:
 
     const char * ToIp() const;
     const char * ToIpPort() const;
-
+	uint16_t ToPort() const;
     const struct sockaddr_in& GetSockAddrInet() const { return addr_; }
     void SetSockAddrInet(const struct sockaddr_in& addr) { addr_ = addr; }
 

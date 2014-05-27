@@ -12,6 +12,7 @@ enum MsgCmd
 message StartReq
 {
 	required uint32 currentconn = 1;//当前已建立连接总数，不包括这个正在建立的连接
+	required uint32 channelcnt = 2;//当前通道总数编号总是从0-cnt 0 总是默认
 }
 
 message StartRsp

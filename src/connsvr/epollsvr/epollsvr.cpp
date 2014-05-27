@@ -1,14 +1,20 @@
 #include "epollsvr.h"
+#include "connsvr/protocol/protocol_connsvr.pb.h"
 
-EPollPoller __unvisiable_poll;
-
-int EpollServer::Process()
+int ConnClient::OnRecvMsg()
 {
-	return __unvisiable_poll.Poll(0);
+    printf("Recv %d bytes Msg %s ", (int)m_RecvBuf.ReadableBytes(), m_RecvBuf.Peek() );
+    m_RecvBuf.Retrieve(m_RecvBuf.ReadableBytes());
+
+        
+    return 0;
 }
+
 
 int EpollServer::OnMsgRecv(ServerChannel& channel)
 {
+
+
     //printf("Recv %d bytes Msg %s ", (int)channel.ReadableBytes(), channel.PeekReadBuf() );
 
   /*  channel.SendMsg(channel.PeekReadBuf(), channel.ReadableBytes());
@@ -30,6 +36,25 @@ int EpollServer::OnMsgRecv(ServerChannel& channel)
 }
 int EpollServer::OnNewChannel(int iFD, InetAddress addr)
 {
+	if( m_idxvec.empty() )
+	{
+		m_ChannelMap[iFD]->Close();
+	}
+	int connid = *m_idxvec.rbegin();
+	ConnSvr_Conf::ConnsvrMsg msg;
+	msg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_start_req);
+	msg.mutable_head()->set_msglen(0);
+	msg.mutable_head()->set_connid(connid);
+	msg.mutable_head()->set_port(addr.ToPort());
+	msg.mutable_head()->set_ip(addr.ToIp());
+	msg.mutable_startreq()->set_currentconn(GetCurrConn());
+	msg.mutable_startreq()->set_channelcnt(m_cptrvec.size());
+	uint32_t len = 0;
+	const char* buf = G_ConnSvr.Pack(&msg,len);
+	if( len > 0 )
+	{
+		m_cptrvec[0]->SendMsg(buf,len);
+	}
     printf("OnNewChannel %d from %s count:%d\n", iFD, addr.ToIpPort(), (int)m_ChannelMap.size());
     return TcpServer::OnNewChannel(iFD, addr);
 }
@@ -38,5 +63,6 @@ int EpollServer::OnCloseChannel( ServerChannel& channel )
     printf("OnCloseChannel %d from %s count:%d\n", channel.GetFD(), channel.GetPeerAddr().ToIpPort(), (int)m_ChannelMap.size() );
     return TcpServer::OnCloseChannel(channel);
 }
+
 
 

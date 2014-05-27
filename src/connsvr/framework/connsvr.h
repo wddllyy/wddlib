@@ -21,6 +21,7 @@ public:
     {
 
     }
+	EPollPoller& GetPoll() { return m_poll; }
     virtual int OnInit();
     virtual ProcRetMode OnProc();
     virtual int OnTick();

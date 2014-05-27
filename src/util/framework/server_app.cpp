@@ -128,6 +128,7 @@ int ServerApp::Init()
 }
 const char* ServerApp::Pack(::google::protobuf::Message* msg, uint32_t& len)
 {
+	m_Buff.clear();
 	msg->SerializeToString(&m_Buff);
 	len = m_Buff.size();
 	uint32_t nlen = htonl(len);

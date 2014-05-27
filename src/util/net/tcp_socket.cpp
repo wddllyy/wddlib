@@ -218,7 +218,10 @@ const char * InetAddress::ToIp() const
     }
     return buf;
 }
-
+uint16_t InetAddress::ToPort() const
+{
+	return be16toh(addr_.sin_port);
+}
 const char * InetAddress::ToIpPort() const
 {
     static char buf[32];

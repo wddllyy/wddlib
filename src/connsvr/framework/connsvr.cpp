@@ -12,7 +12,6 @@ int ConnSvr::OnInit()
 }
 ProcRetMode ConnSvr::OnProc()
 {
-	SEpollServer::GetInstance()->Process();
     //LOG_ERROR("OnProc");
     return PROC_RET_SLEEP;
 }
