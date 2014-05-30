@@ -6,7 +6,8 @@ enum MsgCmd
 	connsvr_start_rsp = 1;
 	connsvr_stop	  = 2;
 	connsvr_route	  = 3;
-	connsvr_cmd_count = 4;
+	connsvr_msg_ntf   = 4;
+	connsvr_cmd_count = 5;
 }
 
 message StartReq
@@ -30,14 +31,17 @@ message Route
 {
 	required uint32 routechannel = 1;
 }
-
+message MsgNtf
+{
+	required bytes buff = 1;
+}
 
 message MsgHead
 {
 	required fixed32 msglen = 1;
 	required fixed32 cmdid  = 2;
 	required fixed32 connid = 3;
-	required uint32    port	= 4;
+	required uint32  port	= 4;
 	required string  ip		= 5;
 }
 
@@ -48,5 +52,6 @@ message ConnsvrMsg
 	optional StartRsp startrsp	= 3;
 	optional Stop stop			= 4;
 	optional Route route		= 5;
+	optional MsgNtf msgntf		= 6;
 }
 

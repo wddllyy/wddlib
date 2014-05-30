@@ -1,10 +1,17 @@
 #include "connsvr.h"
 #include "connsvr/epollsvr/epollsvr.h"
+#include "connsvr/msghandle/MsgHandle.h"
 
 ConnSvr G_ConnSvr;
 
 int ConnSvr::OnInit() 
 {
+	if( GetConf()->msglensize() != 4 &&GetConf()->msglensize() != 2 )
+	{
+		LOG_ERROR("msglensize can only 2 or 4");
+		return -1;
+	}
+	MsgHandleMgr::Init();
 	SEpollServer::SetSingleton(new EpollServer(InetAddress("0.0.0.0", m_config.port()), true));
 	SEpollServer::GetInstance()->Start();
     LOG_ERROR("OnInit");
