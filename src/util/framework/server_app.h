@@ -20,6 +20,7 @@ namespace google
     }
 }
 
+#define _Max_Msg_Len 1024*1024
 
 class ServerApp;
 class AppCtrlServer : public TcpServer
@@ -58,6 +59,7 @@ public:
     int Init();
     int ControlCmd(const std::string& instr, std::string& outstr);
 	const char* Pack(::google::protobuf::Message* , uint32_t& len);
+	const char* GetMsg(const char* ,uint32_t& len);
     template<typename TConf>
     int LoadConf(TConf & conf);
 protected:
@@ -71,7 +73,7 @@ protected:
     timeval m_curtime;
     bool m_is_stop;
 
-	std::string m_Buff;
+	char m_Buff[_Max_Msg_Len];
 
 private:
 

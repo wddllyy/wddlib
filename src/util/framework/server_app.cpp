@@ -96,7 +96,7 @@ ServerApp::ServerApp( InetAddress controladdr, const char * conf_filename )
     , m_conf_filename(conf_filename)
     , m_is_stop(false)
 {
-	m_Buff.reserve(4096);
+	
 }
 
 
@@ -126,14 +126,27 @@ int ServerApp::Init()
 
 
 }
+const char* ServerApp::GetMsg(const char* buff,uint32_t& len)
+{
+	uint32_t msglen = *(uint32_t*)buff;
+	msglen = ntohl(msglen);
+	if( len < msglen )
+		return NULL;
+	len = msglen;
+	return buff;
+}
+
 const char* ServerApp::Pack(::google::protobuf::Message* msg, uint32_t& len)
 {
-	m_Buff.clear();
-	msg->SerializeToString(&m_Buff);
-	len = m_Buff.size();
-	uint32_t nlen = htonl(len);
-	memcpy(&m_Buff[0],&nlen,sizeof(uint32_t));
-	return &m_Buff[0];
+	len = 0;
+	if( msg->SerializeToArray(m_Buff,_Max_Msg_Len) )
+	{
+		len = msg->ByteSize();
+		uint32_t nlen = htonl(len);
+		memcpy(m_Buff,&nlen,sizeof(uint32_t));
+		return m_Buff;
+	}
+	return NULL;
 }
 int ServerApp::Run()
 {

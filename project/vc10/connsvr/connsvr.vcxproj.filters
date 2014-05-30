@@ -10,6 +10,9 @@
     <Filter Include="protocol">
       <UniqueIdentifier>{12f2beb7-9661-4d62-9bdf-4e47f8b56661}</UniqueIdentifier>
     </Filter>
+    <Filter Include="msghandle">
+      <UniqueIdentifier>{8403eda2-3da1-42fd-96d8-fe306beee097}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\connsvr\framework\connsvr.cpp">
@@ -24,6 +27,9 @@
     <ClCompile Include="..\..\..\src\connsvr\protocol\protocol_connsvr.pb.cc">
       <Filter>protocol</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\connsvr\msghandle\MsgHandle.cpp">
+      <Filter>msghandle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\connsvr\framework\connsvr.h">
@@ -37,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\connsvr\protocol\protocol_connsvr.pb.h">
       <Filter>protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\connsvr\msghandle\MsgHandle.h">
+      <Filter>msghandle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

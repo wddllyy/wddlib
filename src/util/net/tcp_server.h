@@ -43,6 +43,7 @@ public:
 
     int SendMsg(const char * data, size_t len);
 public:
+	int m_id;
     TcpServer & m_Server;
 };
 

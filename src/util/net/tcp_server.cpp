@@ -142,7 +142,7 @@ ServerChannel::ServerChannel( TcpServer & server )
     :TcpChannel(server.GetEPoll())
     ,m_Server(server)
 {
-
+	m_id = 0;
 }
 
 ServerChannel::~ServerChannel()
