@@ -25,6 +25,7 @@
     <ClInclude Include="..\..\..\src\connsvr\protocol\protocol_connsvr.pb.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\src\connsvr\framework\connsvr.conf" />
     <None Include="..\..\..\src\connsvr\framework\connsvr.proto" />
     <None Include="..\..\..\src\connsvr\protocol\protocol_connsvr.proto" />
   </ItemGroup>

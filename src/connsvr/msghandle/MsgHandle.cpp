@@ -130,6 +130,7 @@ void MsgHandleMgr::Init()
 	m_handleArr[ConnSvr_Conf::connsvr_start_rsp] = &StartRspHandle;
 	m_handleArr[ConnSvr_Conf::connsvr_stop] = &StopHandle;
 	m_handleArr[ConnSvr_Conf::connsvr_route] = &RouteHandle;
+	m_handleArr[ConnSvr_Conf::connsvr_msg_ntf] = &MsgNtfHandle;
 
 }
 int MsgHandleMgr::HandleMsg(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)

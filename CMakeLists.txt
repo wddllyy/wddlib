@@ -27,6 +27,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 add_subdirectory(src/util)
 add_subdirectory(src/connsvr)
+add_subdirectory(src/connsvrtest)
 if(CMAKE_BUILD_EXAMPLES)
   add_subdirectory(testcase)
 endif()

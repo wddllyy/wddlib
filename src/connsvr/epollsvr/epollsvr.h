@@ -105,10 +105,11 @@ public:
 		}
 		m_cptrvec.resize(G_ConnSvr.GetConf()->channel_size() + 1);
 		m_cptrvec[0] = new ConnClient(InetAddress(G_ConnSvr.GetConf()->defaultchannel().ip().c_str(),(uint16_t)G_ConnSvr.GetConf()->defaultchannel().port()),0);
-
+		m_cptrvec[0]->Connect();
 		for( int i = 0 ; i < G_ConnSvr.GetConf()->channel_size() ; ++i )
 		{
 			m_cptrvec[i+1] = new ConnClient(InetAddress(G_ConnSvr.GetConf()->channel(i).ip().c_str(),(uint16_t)G_ConnSvr.GetConf()->channel(i).port()),i+1);
+			m_cptrvec[i+1]->Connect();
 		}
     }
 	bool IsChannelIdValid(int id) const

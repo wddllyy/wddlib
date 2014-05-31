@@ -5,19 +5,26 @@
 
 int ConnClient::OnRecvMsg()
 {
-    printf("Recv %d bytes Msg %s ", (int)m_RecvBuf.ReadableBytes(), m_RecvBuf.Peek() );
-    uint32_t len = m_RecvBuf.ReadableBytes();
-	const char* buff = G_ConnSvr.GetMsg(m_RecvBuf.Peek(),len);
-	
-	if( buff != NULL )
+	while(true)
 	{
-		ConnSvr_Conf::ConnsvrMsg msg;
-		if( msg.ParseFromArray(buff,len) )
+		printf("Recv %d bytes Msg %s ", (int)m_RecvBuf.ReadableBytes(), m_RecvBuf.Peek() );
+		uint32_t len = m_RecvBuf.ReadableBytes();
+		const char* buff = G_ConnSvr.GetMsg(m_RecvBuf.Peek(),len);
+	
+		if( buff != NULL )
 		{
-			MsgHandleMgr::HandleMsg(msg,*this);
+			ConnSvr_Conf::ConnsvrMsg msg;
+			if( msg.ParseFromArray(buff,len) )
+			{
+				MsgHandleMgr::HandleMsg(msg,*this);
+			}
 		}
+		else
+		{
+			return 0;
+		}
+		m_RecvBuf.Retrieve(m_RecvBuf.ReadableBytes());
 	}
-	m_RecvBuf.Retrieve(m_RecvBuf.ReadableBytes());
     return 0;
 }
 
@@ -64,7 +71,7 @@ int EpollServer::OnMsgRecv(ServerChannel& channel)
 
 			uint32_t packlen = 0;
 			const char* packbuf = G_ConnSvr.Pack(&msgntf,packlen);
-			if( len > 0 )
+			if( packlen > 0 )
 			{
 				SEpollServer::GetInstance()->SendMsg(rec->GetChannel(),packbuf,packlen);
 			}

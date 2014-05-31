@@ -55,5 +55,8 @@
     <None Include="..\..\..\src\connsvr\protocol\protocol_connsvr.proto">
       <Filter>protocol</Filter>
     </None>
+    <None Include="..\..\..\src\connsvr\framework\connsvr.conf">
+      <Filter>framework</Filter>
+    </None>
   </ItemGroup>
 </Project>
