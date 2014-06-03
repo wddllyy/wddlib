@@ -92,6 +92,7 @@ int TcpClient::HandleCanRecv()
 
 int TcpClient::HandleCanSend()
 {
+    LOG_ERROR("HandleCanSend %d", m_iFD);
     if (m_state == kConnecting)
     {
         LOG_ERROR("connected %d", m_iFD);
@@ -147,10 +148,16 @@ int TcpClient::_Connected()
     }
     m_state= kConnected;
     EnableReading();
-    if (m_SendBuf.WritableBytes() > 0)
+    //LOG_ERROR("test %d send_buf %d", m_iFD, m_SendBuf.ReadableBytes());
+    if (m_SendBuf.ReadableBytes() > 0)
     {
         EnableWriting();
         return DoContineSend();
+    }
+    else
+    {
+        //LOG_ERROR("DisableWriting %d", m_iFD);
+        DisableWriting();
     }
     
     return 0;

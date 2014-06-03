@@ -36,8 +36,15 @@ int util_client_test(int argc, char *argv[])
     poll.InitEpoll();
 
     MyClient client(poll, InetAddress("10.24.250.73", 7789));
-    //client.Connect();
-    
+    client.Connect();
+
+    while(1)
+    {
+        sleep(1);
+        poll.Poll(1000);
+
+    }
+    /*
     client.SendMsg("start", 7);
     while(1)
     {
@@ -51,7 +58,7 @@ int util_client_test(int argc, char *argv[])
         client.SendMsg(buf, strlen(buf)+1);
         printf("write buf size %d ", (int)client.GetWriteBufBytes());
     }
-
+*/
 
     return 0;
 }
@@ -106,6 +113,6 @@ int util_client_test1(int argc, char *argv[])
 
 int main(int argc, char* argv[])
 {
-    util_client_test1(argc, argv);
+    util_client_test(argc, argv);
     return 0;
 }

@@ -5,7 +5,8 @@
 #include "util/net/tcp_channel.h"
 #include "util/log/logmgr.h"
 
-
+static const size_t k_MaxSendBufSize = 50 * 1024 *1024;
+static const size_t k_MaxRecvBufSize = 50 * 1024 *1024;
 
 int TcpChannel::DoSend( const char * buf, size_t len )
 {
@@ -79,7 +80,7 @@ int TcpChannel::DoContineSend()
 int TcpChannel::DoRecv()
 {
 
-    if (m_RecvBuf.ReadableBytes() > 50*1024*1024)
+    if (m_RecvBuf.ReadableBytes() > k_MaxRecvBufSize)
     {
         m_RecvBuf.Retrieve(m_RecvBuf.ReadableBytes());
     }
@@ -137,7 +138,7 @@ TcpChannel::~TcpChannel()
 
 int TcpChannel::AppendSendBuf( const char * buf, size_t len )
 {
-    if (m_SendBuf.ReadableBytes() > 50*1024*1024)
+    if (m_SendBuf.ReadableBytes() > k_MaxSendBufSize)
     {
         m_SendBuf.Retrieve(m_SendBuf.ReadableBytes());
     }
