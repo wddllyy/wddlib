@@ -1,0 +1,7 @@
+package testConnSvr_Conf;
+
+
+message testConnSvrCfg 
+{
+		required fixed32  port        		 		= 1;	   
+}
