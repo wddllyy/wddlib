@@ -7,23 +7,27 @@ int ConnClient::OnRecvMsg()
 {
 	while(true)
 	{
-		printf("Recv %d bytes Msg %s ", (int)m_RecvBuf.ReadableBytes(), m_RecvBuf.Peek() );
+		LOG_DEBUG("Recv %d bytes Msg %s ", (int)m_RecvBuf.ReadableBytes(), m_RecvBuf.Peek() );
 		uint32_t len = m_RecvBuf.ReadableBytes();
+		if( len == 0 )
+			break;
 		const char* buff = G_ConnSvr.GetMsg(m_RecvBuf.Peek(),len);
-	
+
 		if( buff != NULL )
 		{
 			ConnSvr_Conf::ConnsvrMsg msg;
-			if( msg.ParseFromArray(buff,len) )
+			if( msg.ParseFromArray(buff+sizeof(uint32_t),len-sizeof(uint32_t)) )
 			{
+				LOG_DEBUG("%s",msg.DebugString().c_str());
 				MsgHandleMgr::HandleMsg(msg,*this);
 			}
+			m_RecvBuf.Retrieve(len);
 		}
 		else
 		{
-			return 0;
+			break;
 		}
-		m_RecvBuf.Retrieve(m_RecvBuf.ReadableBytes());
+		
 	}
     return 0;
 }
@@ -38,32 +42,33 @@ int EpollServer::OnMsgRecv(ServerChannel& channel)
 		{
 			const char* buf = channel.PeekReadBuf();
 			uint32_t len = channel.ReadableBytes();
-			if( len == 0 ) return 0;
+			if( len == 0 ) break;
 			uint32_t pos = G_ConnSvr.GetConf()->msglenpos();
 			uint32_t typesize = G_ConnSvr.GetConf()->msglensize();
 			if( pos >= len )
 			{
 				LOG_DEBUG("unfini msg pos %u , %u len", pos, len);
-				return 0;
+				break;
 			}
 			uint32_t msglen = 0;
 			switch(typesize)
 			{
 			case 4:
 				msglen =  ntohl(*(uint32_t*)buf);
+				break;
 			case 2:
 				msglen = ntohs(*(uint16_t*)buf);
+				break;
 			}
 
 			if( msglen > len )
 			{
 				LOG_DEBUG("unfini msg msglen %u , %u len", msglen, len);
-				return 0;
+				break;
 			}
 
 			ConnSvr_Conf::ConnsvrMsg msgntf;
 			msgntf.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_msg_ntf);
-			msgntf.mutable_head()->set_msglen(0);
 			msgntf.mutable_head()->set_connid(rec->GetConnid());
 			msgntf.mutable_head()->set_port(rec->GetAddr().ToPort());
 			msgntf.mutable_head()->set_ip(rec->GetAddr().ToIp());
@@ -74,11 +79,12 @@ int EpollServer::OnMsgRecv(ServerChannel& channel)
 			if( packlen > 0 )
 			{
 				SEpollServer::GetInstance()->SendMsg(rec->GetChannel(),packbuf,packlen);
+				LOG_DEBUG("%s",msgntf.DebugString().c_str());
 			}
 
 			LOG_DEBUG("send msg from connid %d to channel %d msglen %u" ,rec->GetConnid(),rec->GetChannel() , msglen);
 
-			channel.RetrieveReadBuf(channel.ReadableBytes());
+			channel.RetrieveReadBuf(msglen);
 
 		}
 	}
@@ -98,14 +104,18 @@ int EpollServer::OnNewChannel(int iFD, InetAddress addr)
 	//TcpServer::ChannleMap::iterator it = m_ChannelMap.find(iFD);
 	//if( it == m_ChannelMap.end() )
 	//	return -1;
+	ChannleMap::iterator it = m_ChannelMap.find(iFD);
+	if( it == m_ChannelMap.end() )
+		return -1;
 	int connid = _RecoredNewConn(iFD,addr);
 	if( connid < 0 )
 	{
+		it->second->Close();
 		return -1;
 	}
+	it->second->m_id = connid;
 	ConnSvr_Conf::ConnsvrMsg msg;
 	msg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_start_req);
-	msg.mutable_head()->set_msglen(0);
 	msg.mutable_head()->set_connid(connid);
 	msg.mutable_head()->set_port(addr.ToPort());
 	msg.mutable_head()->set_ip(addr.ToIp());
@@ -116,6 +126,7 @@ int EpollServer::OnNewChannel(int iFD, InetAddress addr)
 	if( len > 0 )
 	{
 		m_cptrvec[0]->SendMsg(buf,len);
+		LOG_DEBUG("%s",msg.DebugString().c_str());
 	}
 	else
 	{
@@ -131,7 +142,6 @@ int EpollServer::OnCloseChannel( ServerChannel& channel )
 	{
 		ConnSvr_Conf::ConnsvrMsg stopmsg;
 		stopmsg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_stop);
-		stopmsg.mutable_head()->set_msglen(0);
 		stopmsg.mutable_head()->set_connid(channel.m_id);
 		stopmsg.mutable_head()->set_port(rec->GetAddr().ToPort());
 		stopmsg.mutable_head()->set_ip(rec->GetAddr().ToIp());
@@ -141,6 +151,7 @@ int EpollServer::OnCloseChannel( ServerChannel& channel )
 		if( len > 0 )
 		{
 			channel.SendMsg(buf,len);
+			LOG_DEBUG("%s",stopmsg.DebugString().c_str());
 		}
 	}
 	_CloseConn(channel.m_id);

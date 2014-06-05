@@ -15,7 +15,10 @@ struct ConnectionRecord
 	friend class EpollServer;
 	ConnectionRecord()
 	{
-		memset(this,0,sizeof(ConnectionRecord));
+		m_channelid = 0;
+		m_iFD = 0;
+		memset(&m_addr,0,sizeof(m_addr));
+		_UpdateConnid();
 	}
 	void Attatch(int fd,const InetAddress& addr)
 	{
@@ -53,7 +56,7 @@ struct ConnectionRecord
 	int GetFD() const { return m_iFD; }
 	InetAddress& GetAddr() { return m_addr; }
 	int GetChannel() const { return m_channelid; } 
-	
+	int GetIdx() const { return m_idx; }
 private:
 	void _UpdateConnid()
 	{
@@ -140,7 +143,17 @@ public:
 		if( connid >= 0 )
 		{
 			ConnectionRecord* rec = &m_vec[connid%m_vec.size()];
-			if( rec->IsValid() && rec->GetConnid() == connid )
+			if(  rec->IsValid() && rec->GetConnid() == connid )
+				return rec;
+		}
+		return NULL;
+	}
+	ConnectionRecord* GetConnectionRecordByIdx( int idx ) 
+	{
+		if( idx >= 0 )
+		{
+			ConnectionRecord* rec = &m_vec[idx%m_vec.size()];
+			if( rec->GetIdx() == idx )
 				return rec;
 		}
 		return NULL;
@@ -183,7 +196,7 @@ protected:
 	int _RecoredNewConn(int iFD, const InetAddress& addr)
 	{
 		int idx = GetFreeIdx();
-		ConnectionRecord* connred = GetConnectionRecord(idx);
+		ConnectionRecord* connred = GetConnectionRecordByIdx(idx);
 		if( connred == NULL || connred->IsValid() )
 		{
 			_CloseConn(idx);
@@ -198,6 +211,7 @@ protected:
 		ConnectionRecord* connred = GetConnectionRecord(connid);
 		if( connred != NULL && connred->IsValid() )
 		{
+			ReturnIdx(connred->m_idx);
 			connred->Detatch();
 		}
 	}

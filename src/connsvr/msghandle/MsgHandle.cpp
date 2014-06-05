@@ -32,7 +32,6 @@ int StopHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 
 	ConnSvr_Conf::ConnsvrMsg stopmsg;
 	stopmsg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_stop);
-	stopmsg.mutable_head()->set_msglen(0);
 	stopmsg.mutable_head()->set_connid(msg.head().connid());
 	stopmsg.mutable_head()->set_port(rec->GetAddr().ToPort());
 	stopmsg.mutable_head()->set_ip(rec->GetAddr().ToIp());
@@ -55,7 +54,6 @@ int RouteHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 
 	ConnSvr_Conf::ConnsvrMsg routemsg;
 	routemsg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_route);
-	routemsg.mutable_head()->set_msglen(0);
 	routemsg.mutable_head()->set_connid(msg.head().connid());
 	routemsg.mutable_head()->set_port(rec->GetAddr().ToPort());
 	routemsg.mutable_head()->set_ip(rec->GetAddr().ToIp());
@@ -81,11 +79,7 @@ int MsgNtfHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 	if( rec == NULL )
 	{
 		ConnSvr_Conf::ConnsvrMsg stopmsg;
-		stopmsg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_stop);
-		stopmsg.mutable_head()->set_msglen(0);
-		stopmsg.mutable_head()->set_connid(msg.head().connid());
-		stopmsg.mutable_head()->set_port(rec->GetAddr().ToPort());
-		stopmsg.mutable_head()->set_ip(rec->GetAddr().ToIp());
+		*stopmsg.mutable_head() = msg.head();
 		stopmsg.mutable_stop()->set_timestamp(G_ConnSvr.CurrentTime().tv_sec);
 		uint32_t len = 0;
 		const char* buf = G_ConnSvr.Pack(&stopmsg,len);
@@ -99,11 +93,7 @@ int MsgNtfHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 	if( sc == NULL )
 	{
 		ConnSvr_Conf::ConnsvrMsg stopmsg;
-		stopmsg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_stop);
-		stopmsg.mutable_head()->set_msglen(0);
-		stopmsg.mutable_head()->set_connid(msg.head().connid());
-		stopmsg.mutable_head()->set_port(rec->GetAddr().ToPort());
-		stopmsg.mutable_head()->set_ip(rec->GetAddr().ToIp());
+		*stopmsg.mutable_head() = msg.head();
 		stopmsg.mutable_stop()->set_timestamp(G_ConnSvr.CurrentTime().tv_sec);
 		SEpollServer::GetInstance()->CloseConnid(msg.head().connid());
 		uint32_t len = 0;

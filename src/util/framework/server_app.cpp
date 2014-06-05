@@ -130,8 +130,12 @@ const char* ServerApp::GetMsg(const char* buff,uint32_t& len)
 {
 	uint32_t msglen = *(uint32_t*)buff;
 	msglen = ntohl(msglen);
+	LOG_DEBUG("try GetMsg len %u , current buf len %u",msglen,len);
 	if( len < msglen )
+	{
+		len = 0;
 		return NULL;
+	}
 	len = msglen;
 	return buff;
 }
@@ -139,9 +143,9 @@ const char* ServerApp::GetMsg(const char* buff,uint32_t& len)
 const char* ServerApp::Pack(::google::protobuf::Message* msg, uint32_t& len)
 {
 	len = 0;
-	if( msg->SerializeToArray(m_Buff,_Max_Msg_Len) )
+	if( msg->SerializeToArray(m_Buff+sizeof(uint32_t),_Max_Msg_Len) )
 	{
-		len = msg->ByteSize();
+		len = msg->ByteSize()+sizeof(uint32_t);
 		uint32_t nlen = htonl(len);
 		memcpy(m_Buff,&nlen,sizeof(uint32_t));
 		return m_Buff;

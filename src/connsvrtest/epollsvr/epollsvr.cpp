@@ -9,20 +9,24 @@ int EpollServer::OnMsgRecv(ServerChannel& channel)
 	{
 		const char * buf = channel.PeekReadBuf();
 		uint32_t len = channel.ReadableBytes();
+		if( len == 0 )
+			break;
 		const char* buff = G_ConnSvr.GetMsg(buf,len);
 		if( buff != NULL )
 		{
 			ConnSvr_Conf::ConnsvrMsg msg;
-			if( msg.ParseFromArray(buff,len) )
+			if( msg.ParseFromArray(buff+sizeof(uint32_t),len-sizeof(uint32_t)) )
 			{
+				LOG_DEBUG("%s",msg.DebugString().c_str());
 				MsgHandleMgr::HandleMsg(msg,channel);
 			}
+			channel.RetrieveReadBuf(len);
 		}
 		else
 		{
-			return 0;
+			break;
 		}
-		channel.RetrieveReadBuf(channel.ReadableBytes());
+		
 	}
     return 0;
 }

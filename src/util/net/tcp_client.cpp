@@ -165,7 +165,7 @@ int TcpClient::_Connected()
 
 int TcpClient::SendMsg( const char * data, size_t len )
 {
-    LOG_TRACE("SendMsg fd:%d len:%d m_state:%d", m_iFD, len, m_state);
+    LOG_DEBUG("SendMsg fd:%d len:%d m_state:%d", m_iFD, len, m_state);
     if (m_state == kConnected)
     {
         return TcpChannel::DoSend(data, len);

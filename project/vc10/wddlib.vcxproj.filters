@@ -22,6 +22,9 @@
     <Filter Include="util\framework">
       <UniqueIdentifier>{01c57475-1802-43f6-a754-d0ed641b2a1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util\ansymysql">
+      <UniqueIdentifier>{0dff2b98-fb82-4369-b2c5-2307e3fb03b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\util\container\obj_pool.cpp">

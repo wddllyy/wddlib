@@ -7,8 +7,7 @@ MsgHandle* MsgHandleMgr::m_handleArr[ConnSvr_Conf::connsvr_cmd_count];
 int  StartRspHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ServerChannel& channel)
 {
 	ConnSvr_Conf::ConnsvrMsg startrsp;
-	startrsp.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_msg_ntf);
-	startrsp.mutable_head()->set_msglen(0);
+	startrsp.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_start_rsp);
 	startrsp.mutable_head()->set_connid(msg.head().connid());
 	startrsp.mutable_head()->set_port(msg.head().port());
 	startrsp.mutable_head()->set_ip(msg.head().ip());
@@ -42,6 +41,7 @@ int MsgNtfHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ServerChannel& channel)
 	const char* packbuf = G_ConnSvr.Pack(&ntf,packlen);
 	if( packlen > 0 )
 	{
+		LOG_DEBUG("Send msg to connsvr len %u",packlen);
 		channel.SendMsg(packbuf,packlen);
 	}
 	return 0;

@@ -38,7 +38,6 @@ message MsgNtf
 
 message MsgHead
 {
-	required fixed32 msglen = 1;
 	required fixed32 cmdid  = 2;
 	required fixed32 connid = 3;
 	required uint32  port	= 4;
