@@ -9,7 +9,7 @@ DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/framework/testconnsvr.proto
 
 ADD_CUSTOM_COMMAND(
 OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/protocol/protocol_connsvr.pb.h ${CMAKE_CURRENT_SOURCE_DIR}/protocol/protocol_connsvr.pb.cc
-COMMAND ${PB_TOOLS} --proto_path=${CMAKE_CURRENT_SOURCE_DIR}/../connsvr/protocol ${CMAKE_CURRENT_SOURCE_DIR}/../connsvr/protocol/protocol_connsvr.proto --cpp_out=${CMAKE_CURRENT_SOURCE_DIR}/protocol
+COMMAND ${PB_TOOLS} --proto_path=${CMAKE_CURRENT_SOURCE_DIR}/../../dep/protobuf/include/ --proto_path=${CMAKE_CURRENT_SOURCE_DIR}/../connsvr/protocol --proto_path=${CMAKE_CURRENT_SOURCE_DIR}/../ ${CMAKE_CURRENT_SOURCE_DIR}/../connsvr/protocol/protocol_connsvr.proto --cpp_out=${CMAKE_CURRENT_SOURCE_DIR}/protocol
 DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../connsvr/protocol/protocol_connsvr.proto
 )
 

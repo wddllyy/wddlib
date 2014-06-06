@@ -4,6 +4,7 @@
 #include "util/framework/server_app.h"
 #include "util/log/logmgr.h"
 #include "testconnsvr.pb.h"
+#include "util/pbparser/PbParser.h"
 
 class testConnSvr;
 
@@ -30,6 +31,7 @@ public:
     virtual testConnSvr_Conf::testConnSvrCfg* GetConf() ;
     virtual int OnCtrlCmd(const std::string& , std::string& );
 	testConnSvr_Conf::testConnSvrCfg m_config;
+	PbParser m_parser;
 };
 
 #endif

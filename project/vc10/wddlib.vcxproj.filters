@@ -22,8 +22,11 @@
     <Filter Include="util\framework">
       <UniqueIdentifier>{01c57475-1802-43f6-a754-d0ed641b2a1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="util\ansymysql">
+    <Filter Include="util\threadpool">
       <UniqueIdentifier>{0dff2b98-fb82-4369-b2c5-2307e3fb03b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util\pbparser">
+      <UniqueIdentifier>{d5274812-4e69-4bd2-a768-3d9a35c57746}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +69,12 @@
     <ClCompile Include="..\..\src\util\framework\server_app.cpp">
       <Filter>util\framework</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\util\pbparser\PbParser.cpp">
+      <Filter>util\pbparser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\pbparser\UtilProtocol.pb.cc">
+      <Filter>util\pbparser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\util\container\obj_pool.h">
@@ -107,10 +116,19 @@
     <ClInclude Include="..\..\src\util\framework\server_app.h">
       <Filter>util\framework</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\util\pbparser\PbParser.h">
+      <Filter>util\pbparser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\pbparser\UtilProtocol.pb.h">
+      <Filter>util\pbparser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\util\CMakeLists.txt">
       <Filter>util</Filter>
+    </None>
+    <None Include="..\..\src\util\pbparser\UtilProtocol.proto">
+      <Filter>util\pbparser</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testcase", "testcase.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "connsvr", "connsvr\connsvr.vcxproj", "{100DD14D-6E83-40F9-9E09-F214C8A54DFC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testconnsvr", "testconnsvr\testconnsvr.vcxproj", "{BC3C0934-8A0A-4D8E-A8DD-791DE0C95A0F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "conntestsvr", "..\conntestsvr\conntestsvr.vcxproj", "{AAAB74A7-274E-4966-BFEB-CDD725D69507}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,10 +30,10 @@ Global
 		{100DD14D-6E83-40F9-9E09-F214C8A54DFC}.Debug|Win32.Build.0 = Debug|Win32
 		{100DD14D-6E83-40F9-9E09-F214C8A54DFC}.Release|Win32.ActiveCfg = Release|Win32
 		{100DD14D-6E83-40F9-9E09-F214C8A54DFC}.Release|Win32.Build.0 = Release|Win32
-		{BC3C0934-8A0A-4D8E-A8DD-791DE0C95A0F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{BC3C0934-8A0A-4D8E-A8DD-791DE0C95A0F}.Debug|Win32.Build.0 = Debug|Win32
-		{BC3C0934-8A0A-4D8E-A8DD-791DE0C95A0F}.Release|Win32.ActiveCfg = Release|Win32
-		{BC3C0934-8A0A-4D8E-A8DD-791DE0C95A0F}.Release|Win32.Build.0 = Release|Win32
+		{AAAB74A7-274E-4966-BFEB-CDD725D69507}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AAAB74A7-274E-4966-BFEB-CDD725D69507}.Debug|Win32.Build.0 = Debug|Win32
+		{AAAB74A7-274E-4966-BFEB-CDD725D69507}.Release|Win32.ActiveCfg = Release|Win32
+		{AAAB74A7-274E-4966-BFEB-CDD725D69507}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

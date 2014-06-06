@@ -130,8 +130,7 @@ void protobuf_AssignDesc_protocol_5fconnsvr_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(MsgNtf));
   MsgHead_descriptor_ = file->message_type(5);
-  static const int MsgHead_offsets_[5] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgHead, msglen_),
+  static const int MsgHead_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgHead, cmdid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgHead, connid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgHead, port_),
@@ -222,25 +221,26 @@ void protobuf_AddDesc_protocol_5fconnsvr_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::util::pbparser::protobuf_AddDesc_util_2fpbparser_2fUtilProtocol_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\026protocol_connsvr.proto\022\014ConnSvr_Conf\"3"
-    "\n\010StartReq\022\023\n\013currentconn\030\001 \002(\r\022\022\n\nchann"
-    "elcnt\030\002 \002(\r\"0\n\010StartRsp\022\016\n\006accept\030\001 \002(\005\022"
-    "\024\n\014routechannel\030\002 \002(\r\"\031\n\004Stop\022\021\n\ttimesta"
-    "mp\030\001 \002(\004\"\035\n\005Route\022\024\n\014routechannel\030\001 \002(\r\""
-    "\026\n\006MsgNtf\022\014\n\004buff\030\001 \002(\014\"R\n\007MsgHead\022\016\n\006ms"
-    "glen\030\001 \002(\007\022\r\n\005cmdid\030\002 \002(\007\022\016\n\006connid\030\003 \002("
-    "\007\022\014\n\004port\030\004 \002(\r\022\n\n\002ip\030\005 \002(\t\"\361\001\n\nConnsvrM"
-    "sg\022#\n\004head\030\001 \002(\0132\025.ConnSvr_Conf.MsgHead\022"
-    "(\n\010startreq\030\002 \001(\0132\026.ConnSvr_Conf.StartRe"
-    "q\022(\n\010startrsp\030\003 \001(\0132\026.ConnSvr_Conf.Start"
-    "Rsp\022 \n\004stop\030\004 \001(\0132\022.ConnSvr_Conf.Stop\022\"\n"
-    "\005route\030\005 \001(\0132\023.ConnSvr_Conf.Route\022$\n\006msg"
-    "ntf\030\006 \001(\0132\024.ConnSvr_Conf.MsgNtf*\207\001\n\006MsgC"
-    "md\022\025\n\021connsvr_start_req\020\000\022\025\n\021connsvr_sta"
-    "rt_rsp\020\001\022\020\n\014connsvr_stop\020\002\022\021\n\rconnsvr_ro"
-    "ute\020\003\022\023\n\017connsvr_msg_ntf\020\004\022\025\n\021connsvr_cm"
-    "d_count\020\005", 689);
+    "\n\026protocol_connsvr.proto\022\014ConnSvr_Conf\032 "
+    "util/pbparser/UtilProtocol.proto\"3\n\010Star"
+    "tReq\022\023\n\013currentconn\030\001 \002(\r\022\022\n\nchannelcnt\030"
+    "\002 \002(\r\"0\n\010StartRsp\022\016\n\006accept\030\001 \002(\005\022\024\n\014rou"
+    "techannel\030\002 \002(\r\"\031\n\004Stop\022\021\n\ttimestamp\030\001 \002"
+    "(\004\"\035\n\005Route\022\024\n\014routechannel\030\001 \002(\r\"\026\n\006Msg"
+    "Ntf\022\014\n\004buff\030\001 \002(\014\"B\n\007MsgHead\022\r\n\005cmdid\030\002 "
+    "\002(\007\022\016\n\006connid\030\003 \002(\007\022\014\n\004port\030\004 \002(\r\022\n\n\002ip\030"
+    "\005 \002(\t\"\371\001\n\nConnsvrMsg\022#\n\004head\030\001 \002(\0132\025.Con"
+    "nSvr_Conf.MsgHead\022(\n\010startreq\030\002 \001(\0132\026.Co"
+    "nnSvr_Conf.StartReq\022(\n\010startrsp\030\003 \001(\0132\026."
+    "ConnSvr_Conf.StartRsp\022 \n\004stop\030\004 \001(\0132\022.Co"
+    "nnSvr_Conf.Stop\022\"\n\005route\030\005 \001(\0132\023.ConnSvr"
+    "_Conf.Route\022$\n\006msgntf\030\006 \001(\0132\024.ConnSvr_Co"
+    "nf.MsgNtf:\006\212\265\030\002\010\001*\207\001\n\006MsgCmd\022\025\n\021connsvr_"
+    "start_req\020\000\022\025\n\021connsvr_start_rsp\020\001\022\020\n\014co"
+    "nnsvr_stop\020\002\022\021\n\rconnsvr_route\020\003\022\023\n\017conns"
+    "vr_msg_ntf\020\004\022\025\n\021connsvr_cmd_count\020\005", 715);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "protocol_connsvr.proto", &protobuf_RegisterTypes);
   StartReq::default_instance_ = new StartReq();
@@ -1421,7 +1421,6 @@ void MsgNtf::Swap(MsgNtf* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int MsgHead::kMsglenFieldNumber;
 const int MsgHead::kCmdidFieldNumber;
 const int MsgHead::kConnidFieldNumber;
 const int MsgHead::kPortFieldNumber;
@@ -1444,7 +1443,6 @@ MsgHead::MsgHead(const MsgHead& from)
 
 void MsgHead::SharedCtor() {
   _cached_size_ = 0;
-  msglen_ = 0u;
   cmdid_ = 0u;
   connid_ = 0u;
   port_ = 0u;
@@ -1487,7 +1485,6 @@ MsgHead* MsgHead::New() const {
 
 void MsgHead::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    msglen_ = 0u;
     cmdid_ = 0u;
     connid_ = 0u;
     port_ = 0u;
@@ -1507,26 +1504,10 @@ bool MsgHead::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required fixed32 msglen = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED32) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
-                 input, &msglen_)));
-          set_has_msglen();
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(21)) goto parse_cmdid;
-        break;
-      }
-
       // required fixed32 cmdid = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED32) {
-         parse_cmdid:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED32>(
                  input, &cmdid_)));
@@ -1605,11 +1586,6 @@ bool MsgHead::MergePartialFromCodedStream(
 
 void MsgHead::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // required fixed32 msglen = 1;
-  if (has_msglen()) {
-    ::google::protobuf::internal::WireFormatLite::WriteFixed32(1, this->msglen(), output);
-  }
-
   // required fixed32 cmdid = 2;
   if (has_cmdid()) {
     ::google::protobuf::internal::WireFormatLite::WriteFixed32(2, this->cmdid(), output);
@@ -1642,11 +1618,6 @@ void MsgHead::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MsgHead::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // required fixed32 msglen = 1;
-  if (has_msglen()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(1, this->msglen(), target);
-  }
-
   // required fixed32 cmdid = 2;
   if (has_cmdid()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFixed32ToArray(2, this->cmdid(), target);
@@ -1683,11 +1654,6 @@ int MsgHead::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required fixed32 msglen = 1;
-    if (has_msglen()) {
-      total_size += 1 + 4;
-    }
-
     // required fixed32 cmdid = 2;
     if (has_cmdid()) {
       total_size += 1 + 4;
@@ -1739,9 +1705,6 @@ void MsgHead::MergeFrom(const ::google::protobuf::Message& from) {
 void MsgHead::MergeFrom(const MsgHead& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_msglen()) {
-      set_msglen(from.msglen());
-    }
     if (from.has_cmdid()) {
       set_cmdid(from.cmdid());
     }
@@ -1771,14 +1734,13 @@ void MsgHead::CopyFrom(const MsgHead& from) {
 }
 
 bool MsgHead::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000000f) != 0x0000000f) return false;
 
   return true;
 }
 
 void MsgHead::Swap(MsgHead* other) {
   if (other != this) {
-    std::swap(msglen_, other->msglen_);
     std::swap(cmdid_, other->cmdid_);
     std::swap(connid_, other->connid_);
     std::swap(port_, other->port_);

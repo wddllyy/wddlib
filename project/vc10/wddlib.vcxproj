@@ -100,6 +100,8 @@
     <ClInclude Include="..\..\src\util\net\epoll_poller.h" />
     <ClInclude Include="..\..\src\util\net\tcp_server.h" />
     <ClInclude Include="..\..\src\util\net\tcp_socket.h" />
+    <ClInclude Include="..\..\src\util\pbparser\PbParser.h" />
+    <ClInclude Include="..\..\src\util\pbparser\UtilProtocol.pb.h" />
     <ClInclude Include="..\..\src\util\timer\lite_timer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -121,10 +123,13 @@
     <ClCompile Include="..\..\src\util\net\epoll_poller.cpp" />
     <ClCompile Include="..\..\src\util\net\tcp_server.cpp" />
     <ClCompile Include="..\..\src\util\net\tcp_socket.cpp" />
+    <ClCompile Include="..\..\src\util\pbparser\PbParser.cpp" />
+    <ClCompile Include="..\..\src\util\pbparser\UtilProtocol.pb.cc" />
     <ClCompile Include="..\..\src\util\timer\lite_timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\util\CMakeLists.txt" />
+    <None Include="..\..\src\util\pbparser\UtilProtocol.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

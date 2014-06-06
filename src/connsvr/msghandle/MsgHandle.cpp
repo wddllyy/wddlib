@@ -36,14 +36,8 @@ int StopHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 	stopmsg.mutable_head()->set_port(rec->GetAddr().ToPort());
 	stopmsg.mutable_head()->set_ip(rec->GetAddr().ToIp());
 	stopmsg.mutable_stop()->set_timestamp(G_ConnSvr.CurrentTime().tv_sec);
+	SEpollServer::GetInstance()->SendMsg(rec->GetChannel(),stopmsg);
 	SEpollServer::GetInstance()->CloseConnid(msg.head().connid());
-	uint32_t len = 0;
-	const char* buf = G_ConnSvr.Pack(&stopmsg,len);
-	if( len > 0 )
-	{
-		channel.SendMsg(buf,len);
-	}
-
 	return 0;
 }
 
@@ -64,12 +58,7 @@ int RouteHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 		rec->SetChannelid(msg.startrsp().routechannel());
 		routemsg.mutable_route()->set_routechannel(rec->GetChannel());
 	}
-	uint32_t len = 0;
-	const char* buf = G_ConnSvr.Pack(&routemsg,len);
-	if( len > 0 )
-	{
-		channel.SendMsg(buf,len);
-	}
+	SEpollServer::GetInstance()->SendMsg(rec->GetChannel(),routemsg);
 	return 0;
 }
 
@@ -80,13 +69,9 @@ int MsgNtfHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 	{
 		ConnSvr_Conf::ConnsvrMsg stopmsg;
 		*stopmsg.mutable_head() = msg.head();
+		stopmsg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_stop);
 		stopmsg.mutable_stop()->set_timestamp(G_ConnSvr.CurrentTime().tv_sec);
-		uint32_t len = 0;
-		const char* buf = G_ConnSvr.Pack(&stopmsg,len);
-		if( len > 0 )
-		{
-			channel.SendMsg(buf,len);
-		}
+		SEpollServer::GetInstance()->SendMsg(channel.GetChannId(),stopmsg);
 		return -1;
 	}
 	ServerChannel* sc = SEpollServer::GetInstance()->GetSvrChannel(msg.head().connid());
@@ -94,14 +79,9 @@ int MsgNtfHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ConnClient& channel)
 	{
 		ConnSvr_Conf::ConnsvrMsg stopmsg;
 		*stopmsg.mutable_head() = msg.head();
+		stopmsg.mutable_head()->set_cmdid(ConnSvr_Conf::connsvr_stop);
 		stopmsg.mutable_stop()->set_timestamp(G_ConnSvr.CurrentTime().tv_sec);
-		SEpollServer::GetInstance()->CloseConnid(msg.head().connid());
-		uint32_t len = 0;
-		const char* buf = G_ConnSvr.Pack(&stopmsg,len);
-		if( len > 0 )
-		{
-			channel.SendMsg(buf,len);
-		}
+		SEpollServer::GetInstance()->SendMsg(rec->GetChannel(),stopmsg);
 		SEpollServer::GetInstance()->CloseConnid(msg.head().connid());
 		return -1;
 	}

@@ -13,12 +13,15 @@ int  StartRspHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ServerChannel& channel)
 	startrsp.mutable_head()->set_ip(msg.head().ip());
 	startrsp.mutable_startrsp()->set_accept(0);
 	startrsp.mutable_startrsp()->set_routechannel(0);
-	uint32_t packlen = 0;
-	const char* packbuf = G_ConnSvr.Pack(&startrsp,packlen);
-	if( packlen > 0 )
+
+	const char* buf = NULL;
+	int len = 0;
+	if( G_ConnSvr.m_parser.Pack(startrsp,buf,len) == 0)\
 	{
-		channel.SendMsg(packbuf,packlen);
+		channel.SendMsg(buf,len);
+		LOG_DEBUG("send msg len %d",len);
 	}
+
 	return 0;
 }
 
@@ -37,13 +40,15 @@ int RouteHandle(const ConnSvr_Conf::ConnsvrMsg& , ServerChannel& )
 int MsgNtfHandle(const ConnSvr_Conf::ConnsvrMsg& msg, ServerChannel& channel)
 {
 	ConnSvr_Conf::ConnsvrMsg ntf = msg;
-	uint32_t packlen = 0;
-	const char* packbuf = G_ConnSvr.Pack(&ntf,packlen);
-	if( packlen > 0 )
+
+	const char* buf = NULL;
+	int len = 0;
+	if( G_ConnSvr.m_parser.Pack(ntf,buf,len) == 0 )
 	{
-		LOG_DEBUG("Send msg to connsvr len %u",packlen);
-		channel.SendMsg(packbuf,packlen);
+		LOG_DEBUG("Send msg to connsvr len %u",len);
+		channel.SendMsg(buf,len);
 	}
+
 	return 0;
 }
 

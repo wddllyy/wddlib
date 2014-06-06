@@ -84,6 +84,7 @@ public:
     }
 	int GetChannId() const { return m_channid; }
     virtual int OnRecvMsg();
+	int SendMsg(google::protobuf::Message& );
 protected:
 	int m_channid;
 };
@@ -190,8 +191,7 @@ public:
 		}
 		return NULL;
 	}
-
-	int SendMsg(int channelid , const char* buf,uint32_t len);
+	int SendMsg(int channelid , google::protobuf::Message& );
 protected:
 	int _RecoredNewConn(int iFD, const InetAddress& addr)
 	{

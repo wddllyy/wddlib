@@ -1,0 +1,21 @@
+import "google/protobuf/descriptor.proto";
+
+package util.pbparser;
+
+enum ProtocolSwitch
+{
+	protocol_no = 0;
+	protocol_yes = 1;
+}
+
+//protocol message options
+message ProtocolPacketOptions
+{
+	optional ProtocolSwitch ProtocolPacket = 1 [default = protocol_no];
+}
+
+// message options
+extend google.protobuf.MessageOptions
+{
+	optional ProtocolPacketOptions PacketOptions = 50001;
+}

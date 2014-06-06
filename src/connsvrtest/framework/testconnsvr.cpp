@@ -44,7 +44,7 @@ int testConnSvr::OnCtrlCmd(const std::string& , std::string& )
 
 int main(int argc, char* argv[])
 {
-    GetDefaultLogMgr().AddFileCat(LOGLV_DEBUG, LOGLV_FATAL, 20*1024*1024, 5, "connsvrtest", "log");
+    GetDefaultLogMgr().AddFileCat(LOGLV_TRACE, LOGLV_FATAL, 20*1024*1024, 5, "connsvrtest", "log");
     G_ConnSvr.Run();
     return 0;
 

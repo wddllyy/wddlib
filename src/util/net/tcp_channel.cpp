@@ -40,7 +40,6 @@ int TcpChannel::DoSend( const char * buf, size_t len )
     if (remaining > 0)
     {
         m_SendBuf.ReadableBytes();
-        
         AppendSendBuf(buf + nwrote, remaining);
         if (!IsWriting())
         {
@@ -111,12 +110,14 @@ int TcpChannel::DoRecv()
     }
     else
     {
+		LOG_TRACE("sockets recv msg len %d", n);
         if (static_cast<size_t>(n) <= writable)
         {
             m_RecvBuf.Writed(n);
         }
         else
         {
+			m_RecvBuf.Writed(writable);
             m_RecvBuf.Append(extrabuf, n - writable);
         }
         OnRecvMsg();

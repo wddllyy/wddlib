@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="epollsvr">
+      <UniqueIdentifier>{f3ec0f9e-8ef2-4b17-be0c-3419a994251a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework">
+      <UniqueIdentifier>{21c7b256-48cc-47b3-990e-cbf0d2af3796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msghandle">
+      <UniqueIdentifier>{4ce34383-ecb7-4d7b-a20b-60d0250bde11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="protocol">
+      <UniqueIdentifier>{0e2453a7-a828-4a25-a028-edee796c050d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\connsvrtest\epollsvr\epollsvr.cpp">
+      <Filter>epollsvr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\connsvrtest\framework\testconnsvr.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\connsvrtest\framework\testconnsvr.pb.cc">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\connsvrtest\msghandle\MsgHandle.cpp">
+      <Filter>msghandle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\connsvrtest\protocol\protocol_connsvr.pb.cc">
+      <Filter>protocol</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\connsvrtest\epollsvr\epollsvr.h">
+      <Filter>epollsvr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\connsvrtest\framework\testconnsvr.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\connsvrtest\framework\testconnsvr.pb.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\connsvrtest\msghandle\MsgHandle.h">
+      <Filter>msghandle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\connsvrtest\protocol\protocol_connsvr.pb.h">
+      <Filter>protocol</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\connsvrtest\framework\testconnsvr.conf">
+      <Filter>framework</Filter>
+    </None>
+    <None Include="..\..\src\connsvrtest\framework\testconnsvr.proto">
+      <Filter>framework</Filter>
+    </None>
+  </ItemGroup>
+</Project>

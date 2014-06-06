@@ -25,6 +25,7 @@
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "util/pbparser/UtilProtocol.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace ConnSvr_Conf {
@@ -556,13 +557,6 @@ class MsgHead : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // required fixed32 msglen = 1;
-  inline bool has_msglen() const;
-  inline void clear_msglen();
-  static const int kMsglenFieldNumber = 1;
-  inline ::google::protobuf::uint32 msglen() const;
-  inline void set_msglen(::google::protobuf::uint32 value);
-
   // required fixed32 cmdid = 2;
   inline bool has_cmdid() const;
   inline void clear_cmdid();
@@ -598,8 +592,6 @@ class MsgHead : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:ConnSvr_Conf.MsgHead)
  private:
-  inline void set_has_msglen();
-  inline void clear_has_msglen();
   inline void set_has_cmdid();
   inline void clear_has_cmdid();
   inline void set_has_connid();
@@ -611,14 +603,13 @@ class MsgHead : public ::google::protobuf::Message {
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::uint32 msglen_;
   ::google::protobuf::uint32 cmdid_;
   ::google::protobuf::uint32 connid_;
-  ::google::protobuf::uint32 port_;
   ::std::string* ip_;
+  ::google::protobuf::uint32 port_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
 
   friend void  protobuf_AddDesc_protocol_5fconnsvr_2eproto();
   friend void protobuf_AssignDesc_protocol_5fconnsvr_2eproto();
@@ -1000,37 +991,15 @@ inline void MsgNtf::set_allocated_buff(::std::string* buff) {
 
 // MsgHead
 
-// required fixed32 msglen = 1;
-inline bool MsgHead::has_msglen() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-inline void MsgHead::set_has_msglen() {
-  _has_bits_[0] |= 0x00000001u;
-}
-inline void MsgHead::clear_has_msglen() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline void MsgHead::clear_msglen() {
-  msglen_ = 0u;
-  clear_has_msglen();
-}
-inline ::google::protobuf::uint32 MsgHead::msglen() const {
-  return msglen_;
-}
-inline void MsgHead::set_msglen(::google::protobuf::uint32 value) {
-  set_has_msglen();
-  msglen_ = value;
-}
-
 // required fixed32 cmdid = 2;
 inline bool MsgHead::has_cmdid() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
 inline void MsgHead::set_has_cmdid() {
-  _has_bits_[0] |= 0x00000002u;
+  _has_bits_[0] |= 0x00000001u;
 }
 inline void MsgHead::clear_has_cmdid() {
-  _has_bits_[0] &= ~0x00000002u;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void MsgHead::clear_cmdid() {
   cmdid_ = 0u;
@@ -1046,13 +1015,13 @@ inline void MsgHead::set_cmdid(::google::protobuf::uint32 value) {
 
 // required fixed32 connid = 3;
 inline bool MsgHead::has_connid() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
+  return (_has_bits_[0] & 0x00000002u) != 0;
 }
 inline void MsgHead::set_has_connid() {
-  _has_bits_[0] |= 0x00000004u;
+  _has_bits_[0] |= 0x00000002u;
 }
 inline void MsgHead::clear_has_connid() {
-  _has_bits_[0] &= ~0x00000004u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void MsgHead::clear_connid() {
   connid_ = 0u;
@@ -1068,13 +1037,13 @@ inline void MsgHead::set_connid(::google::protobuf::uint32 value) {
 
 // required uint32 port = 4;
 inline bool MsgHead::has_port() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
+  return (_has_bits_[0] & 0x00000004u) != 0;
 }
 inline void MsgHead::set_has_port() {
-  _has_bits_[0] |= 0x00000008u;
+  _has_bits_[0] |= 0x00000004u;
 }
 inline void MsgHead::clear_has_port() {
-  _has_bits_[0] &= ~0x00000008u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void MsgHead::clear_port() {
   port_ = 0u;
@@ -1090,13 +1059,13 @@ inline void MsgHead::set_port(::google::protobuf::uint32 value) {
 
 // required string ip = 5;
 inline bool MsgHead::has_ip() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
+  return (_has_bits_[0] & 0x00000008u) != 0;
 }
 inline void MsgHead::set_has_ip() {
-  _has_bits_[0] |= 0x00000010u;
+  _has_bits_[0] |= 0x00000008u;
 }
 inline void MsgHead::clear_has_ip() {
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void MsgHead::clear_ip() {
   if (ip_ != &::google::protobuf::internal::kEmptyString) {

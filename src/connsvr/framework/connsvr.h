@@ -4,7 +4,7 @@
 #include "util/framework/server_app.h"
 #include "util/log/logmgr.h"
 #include "connsvr.pb.h"
-
+#include "util/pbparser/PbParser.h"
 class ConnSvr;
 
 extern ConnSvr G_ConnSvr;
@@ -30,6 +30,7 @@ public:
     virtual ConnSvr_Conf::ConnSvrCfg* GetConf() ;
     virtual int OnCtrlCmd(const std::string& , std::string& );
 	ConnSvr_Conf::ConnSvrCfg m_config;
+	PbParser m_parser;
 };
 
 #endif

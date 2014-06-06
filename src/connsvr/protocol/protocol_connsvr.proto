@@ -1,3 +1,4 @@
+import "util/pbparser/UtilProtocol.proto";
 package ConnSvr_Conf;
 
 enum MsgCmd
@@ -46,6 +47,7 @@ message MsgHead
 
 message ConnsvrMsg
 {
+	option (util.pbparser.PacketOptions)		= { ProtocolPacket : protocol_yes }; 
 	required MsgHead head		= 1;
 	optional StartReq startreq	= 2;
 	optional StartRsp startrsp	= 3;
