@@ -10,7 +10,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "testcase", "testcase.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "connsvr", "connsvr\connsvr.vcxproj", "{100DD14D-6E83-40F9-9E09-F214C8A54DFC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "conntestsvr", "..\conntestsvr\conntestsvr.vcxproj", "{AAAB74A7-274E-4966-BFEB-CDD725D69507}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "conntestsvr", "conntestsvr\conntestsvr.vcxproj", "{AAAB74A7-274E-4966-BFEB-CDD725D69507}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
